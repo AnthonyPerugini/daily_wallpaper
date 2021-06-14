@@ -8,14 +8,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class Scraper():
+class Browser():
     options = webdriver.ChromeOptions()
     #change binary_location to match your browser location
     options.binary_location = r"/usr/bin/google-chrome-stable"
     executable_path = '/usr/bin/chromedriver'
 
     def __init__(self):
-        self.driver = webdriver.Chrome(executable_path=Scraper.executable_path, options=Scraper.options)
+        self.driver = webdriver.Chrome(executable_path=Browser.executable_path, options=Browser.options)
 
     def open(self, website_name):
         self.driver.get(website_name)
@@ -27,7 +27,7 @@ class Scraper():
 
 
 if __name__ == '__main__':
-    scraper = Scraper()
-    scraper.open('https://www.reddit.com/r/wallpapers')
+    browser = Browser()
+    browser.open('https://www.reddit.com/r/wallpapers')
+    browser.tearDown()
 
-    scraper.tearDown()
