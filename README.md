@@ -12,9 +12,21 @@ steps:
 4. set image as desktop background
 
 
+CODE NOTES:
 import ctypes
 SPI_SETDESKWALLPAPER = 20
 img_path = r'C:\Users\Anthony\OneDrive\Pictures\Backgrounds\momo-by-ilya-kuvshinov-2560×1440.jpg'
 ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, img_path , 0)
 
 windows python path = C:\Python39\python.exe
+
+
+
+import requests
+from bs4 import BeautifulSoup
+
+r = request.get('http://www.reddit.com/r/wallpapers')
+soup = BeautifulSoup(r.text, 'html.parser')
+
+for post in soup.find_all('img'):
+...  print(post.get('src'))

@@ -1,4 +1,8 @@
 #!/mnt/c/Users/anthony/AppData/Local/Programs/Python/Python39/python.exe
+# Laptop
+
+#!/mnt/c/Python39/python.exe
+# Desktop
 
 # from Browser import Browser
 import ctypes
