@@ -12,7 +12,10 @@ steps:
 4. Set image as desktop background
 
 
-TODOs:
+### TODOs:
+
 	* issues:
-		** Step 4 doesn't seem to be able to be done through wsl.  I will need to use windows python for this step?
-		** could have better naming convention for the filenames (use post title?)  Issue with this might be conflicts if two posts have the same name. 
+
+		* Step 4 doesn't seem to be able to be done through wsl.  I will need to use windows python for this step?
+
+		* could have better naming convention for the filenames (use post title?)  Issue with this might be conflicts if two posts have the same name. 
