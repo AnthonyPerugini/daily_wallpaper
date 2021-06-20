@@ -1,13 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 
-def is_valid_url(text):
-    if not text: return False
+def is_valid_href(text):
+    if not text: 
+        return False
     return (text.endswith('.jpg') or text.endswith('.png')) and text.startswith('https://i.redd.it/')
 
 def get_urls():
     url = 'https://www.reddit.com/r/wallpapers'
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+
     print('parsing wallpapers..')
 
     r = requests.get(url, headers=headers)
@@ -32,11 +34,13 @@ def get_urls():
             break
         print(f'parsing: #{count}', base_url, thread)
         r = requests.get(base_url + thread, headers=headers)
-        print(r.status_code)
+        if r.status_code != 200:
+            print(f'request failed with error code {r.status_code}, skipping...')
+            continue
 
         soup = BeautifulSoup(r.content, 'html.parser')
         links = soup.find_all('a')
-        links = set(link.get('href') for link in links if is_valid_url(link.get('href')))
+        links = set(link.get('href') for link in links if is_valid_href(link.get('href')))
         if len(links) != 1:
             print('bad link, skipping...')
             continue

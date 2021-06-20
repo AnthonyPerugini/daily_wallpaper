@@ -1,11 +1,9 @@
-from url_scraping import get_urls, is_valid_url
+from wallpaper_scraper import get_urls
 import os
 import wget
 from datetime import datetime
 
-# urls = get_urls()
-urls = ['https://i.redd.it/6se14k41od671.png', 'https://i.redd.it/gk2bi6yvre671.jpg', 'https://i.redd.it/7pbcxhep3g671.png', 'https://i.redd.it/qzwl491dza671.jpg', 'https://i.redd.it/2y0u9067hg671.png']
-
+urls = get_urls()
 backgrounds_path = '/mnt/c/Users/Anthony/OneDrive/Pictures/Backgrounds/'
 
 existing_files = set()
@@ -17,19 +15,13 @@ for _, dirs, files in os.walk(backgrounds_path):
     for directory in dirs:
         existing_dirs.add(directory)
 
-print(existing_dirs)
-print(existing_files)
-
 date = datetime.now().strftime('%Y.%m.%d')
-if date not in existing_dirs:
-    print('creating todays date folder')
-    os.mkdir(backgrounds_path + date)
-else:
-    print('todays date already made, adding')
 
+if date not in existing_dirs:
+    print('creating todays date folder...')
+    os.mkdir(backgrounds_path + date)
 
 os.chdir(backgrounds_path + date)
-print(os.getcwd())
 
 failed = 0
 for url in urls:
@@ -37,7 +29,7 @@ for url in urls:
     print(f'{filename=}')
     if filename not in existing_files:
         wget.download(url, out=os.getcwd())
-        print()
+        print('\n')
     else:
         print('file already found in existing_files, skippping...')
         failed += 1
