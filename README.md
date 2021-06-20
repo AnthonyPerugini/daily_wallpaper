@@ -2,31 +2,17 @@
 
 One day project idea:
 
-- download the top rated reddit/r/wallpapers image, and set it as my background.
+- download the top rated reddit/r/wallpapers images to OneDrive folder, sort by date downloaded.
 
 
 steps:
-1. connect to selenium controlled webbrowser OR use requests/bs4 to grab page info
-2. get the src for the top rater comment picture
-3. download the image to backgrounds folder (name format: Title-Date)
-4. set image as desktop background
+1. Use requests/bs4 to grab page info
+2. Get the href for the top rater comment pictures
+3. Download the image to backgrounds/todays-date folder
+4. Set image as desktop background
 
 
-CODE NOTES:
-import ctypes
-SPI_SETDESKWALLPAPER = 20
-img_path = r'C:\Users\Anthony\OneDrive\Pictures\Backgrounds\momo-by-ilya-kuvshinov-2560×1440.jpg'
-ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, img_path , 0)
-
-windows python path = C:\Python39\python.exe
-
-
-
-import requests
-from bs4 import BeautifulSoup
-
-r = request.get('http://www.reddit.com/r/wallpapers')
-soup = BeautifulSoup(r.text, 'html.parser')
-
-for post in soup.find_all('img'):
-...  print(post.get('src'))
+TODOs:
+	* issues:
+		** Step 4 doesn't seem to be able to be done through wsl.  I will need to use windows python for this step?
+		** could have better naming convention for the filenames (use post title?)  Issue with this might be conflicts if two posts have the same name. 
