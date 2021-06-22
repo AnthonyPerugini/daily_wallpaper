@@ -12,8 +12,8 @@ def get_hyperlinks(html_data):
 
 
 def get_urls():
-    base_url = 'https://www.reddit.com/'
-    wallpapers_url = 'r/wallpapers'
+    base_url = 'https://www.reddit.com'
+    wallpapers_url = '/r/wallpapers'
 
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
@@ -35,7 +35,7 @@ def get_urls():
     for thread in seen:
         if count > 5:
             break
-        print(f'parsing: #{count}', base_url, thread)
+        print(f'parsing: #{count} ', base_url, thread, sep='')
         r = requests.get(base_url + thread, headers=headers)
         if r.status_code != 200:
             print(f'request failed with error code {r.status_code}, skipping...')
