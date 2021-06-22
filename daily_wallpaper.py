@@ -15,7 +15,7 @@ for _, dirs, files in os.walk(backgrounds_path):
     for directory in dirs:
         existing_dirs.add(directory)
 
-date = datetime.now().strftime('%Y.%m.%d')
+date = datetime.now().strftime('%Y.%m')
 if date not in existing_dirs:
     print('creating todays date folder...')
     os.mkdir(backgrounds_path + date)
