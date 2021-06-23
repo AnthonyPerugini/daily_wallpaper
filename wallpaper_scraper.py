@@ -29,10 +29,14 @@ def get_urls():
         if href.startswith('/r/wallpapers/comments/') and href not in seen:
             seen.add(href)
 
-    background_urls = []
+    urls = []
+    names = []
 
     count = 1
     for thread in seen:
+        name = thread.split('/')[-2]
+        names.append(name)
+
         if count > 5:
             break
         print(f'parsing: #{count} ', base_url, thread, sep='')
@@ -44,11 +48,16 @@ def get_urls():
         links = get_hyperlinks(r.content)
 
         links = set(link.get('href') for link in links if is_valid_href(link.get('href')))
+
         if len(links) != 1:
             print('bad link, skipping...')
             continue
 
-        background_urls.append(links.pop())
+        url = links.pop()
+        urls.append(url)
         count += 1
 
-    return background_urls
+    return urls, names
+
+if __name__=='__main__':
+    get_urls()
