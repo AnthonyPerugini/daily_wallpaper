@@ -26,10 +26,15 @@ os.chdir(backgrounds_path + date)
 failed = 0
 for url, name in zip(urls, names):
 
-    filename = url.split('/')[-1]
-    extension = '.' + filename.split('.')[-1]
+    if '.jpg' in url:
+        extension = '.jpg'
+    elif '.png' in url:
+        extension = '.png'
+    else:
+        print("Cant determine extension type. Skipping...")
+        continue
 
-    print(f'{name=}')
+    print(f'\n{name=}')
     if name + extension not in existing_files:
         wget.download(url, out=(name + extension))
         print('\n')
