@@ -33,19 +33,10 @@ def get_urls():
     urls = []
     names = []
 
-    count = 1
     for thread in seen:
-<<<<<<< HEAD
-
 
         print(f'parsing: #{count} ', base_url, thread, sep='')
-=======
-        name = thread.split('/')[-2].split('?')[0]
 
-        if count > 5:
-            break
-        print(f'parsing: #{count} \n', base_url, thread, sep='')
->>>>>>> 71af4db68810c7af61fc81b96856d9cc123b19be
         r = requests.get(base_url + thread, headers=headers)
         if r.status_code != 200:
             print(f'request failed with error code {r.status_code}, skipping...')
@@ -60,15 +51,9 @@ def get_urls():
 
         url = links.pop()
         urls.append(url)
-<<<<<<< HEAD
 
         name = thread.split('/')[-2]
         names.append(name)
-
-=======
-        names.append(name)
->>>>>>> 71af4db68810c7af61fc81b96856d9cc123b19be
-        count += 1
 
     return urls, names
 
