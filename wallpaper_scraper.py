@@ -34,11 +34,8 @@ def get_urls():
 
     count = 1
     for thread in seen:
-        name = thread.split('/')[-2]
-        names.append(name)
 
-        if count > 5:
-            break
+
         print(f'parsing: #{count} ', base_url, thread, sep='')
         r = requests.get(base_url + thread, headers=headers)
         if r.status_code != 200:
@@ -46,7 +43,6 @@ def get_urls():
             continue
 
         links = get_hyperlinks(r.content)
-
         links = set(link.get('href') for link in links if is_valid_href(link.get('href')))
 
         if len(links) != 1:
@@ -55,6 +51,10 @@ def get_urls():
 
         url = links.pop()
         urls.append(url)
+
+        name = thread.split('/')[-2]
+        names.append(name)
+
         count += 1
 
     return urls, names
