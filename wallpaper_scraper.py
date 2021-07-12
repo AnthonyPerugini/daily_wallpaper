@@ -32,6 +32,7 @@ def get_urls():
 
     urls = []
     names = []
+    count = 1
 
     for thread in seen:
 
@@ -54,6 +55,8 @@ def get_urls():
 
         name = thread.split('/')[-2]
         names.append(name)
+
+        count += 1
 
     return urls, names
 
