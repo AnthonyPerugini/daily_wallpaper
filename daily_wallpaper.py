@@ -11,8 +11,8 @@ existing_files = set()
 existing_dirs = set()
 
 for _, dirs, files in os.walk(backgrounds_path):
-    for fi in files:
-       existing_files.add(fi) 
+    for f in files:
+       existing_files.add(f) 
     for directory in dirs:
         existing_dirs.add(directory)
 
@@ -42,5 +42,6 @@ for url, name in zip(urls, names):
         print('Background already found, skippping...\n')
         failed += 1
 
+success_rate = (len(urls) - failed) / len(urls) * 100
 
-print(f'Successfully downloaded {len(urls) - failed}/{len(urls)} images ({(len(urls) - failed) / len(urls) * 100}%)')
+print(f'Successfully downloaded {len(urls) - failed}/{len(urls)} images ({round(success_rate,2)}%)')
